@@ -1,0 +1,33 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muccachino/Hangman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muccachino/Hangman/issues"
+  },
+  "homepage": "https://github.com/Muccachino/Hangman#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "lodash-webpack-plugin": "^0.11.6",
+    "node-sass": "^9.0.0",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
