@@ -3,8 +3,46 @@
   box-sizing: border-box;
 }
 
-.letter {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
+#content {
+  display: grid;
+  #gameHeading {
+    text-align: center;
+  }
+  #highScore {
+    margin-bottom: 50px;
+  }
+  #displayWord {
+    justify-self: center;
+    margin-bottom: 80px;
+    display: flex;
+
+    .letter {
+      width: 30px;
+      height: 30px;
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  #letterBox {
+    justify-self: center;
+    margin-bottom: 80px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(13, 40px);
+    grid-template-rows: repeat(2, 40px);
+    .alphabet {
+      background-color: lightgoldenrodyellow;
+    }
+    .usedAlphabet {
+      background-color: gray;
+    }
+  }
+
+  #newWord {
+    justify-self: center;
+    width: 100px;
+    height: 50px;
+  }
 }

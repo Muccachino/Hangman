@@ -49,10 +49,10 @@ class Hangman {
 const clearBoard = () => {
   newGame.setCurrentWord("");
   newGame.resetGuessedLetters();
-  const usedLetters = document.querySelectorAll(".usedLetter");
+  const usedLetters = document.querySelectorAll(".usedAlphabet");
   for (let i = 0; i < usedLetters.length; i++) {
-    usedLetters[i].classList.remove("usedLetter");
-    usedLetters[i].classList.add("letter");
+    usedLetters[i].classList.remove("usedAlphabet");
+    usedLetters[i].classList.add("alphabet");
   }
   randomWord();
 };
@@ -80,7 +80,7 @@ const checkLetters = (list) => {
     if (list.includes(currentWord[i])) {
       word += currentWord[i];
     } else {
-      word += "_";
+      word += " ";
     }
   }
   displayLetters(word);
@@ -94,10 +94,22 @@ const displayLetters = (word) => {
 };
 
 const guessLetter = (letter) => {
-  let guessedLetters = newGame.getGuessedLetters();
-  guessedLetters = newGame.setGuessedLetters(letter);
+  if (newGame.getCurrentWord().includes(letter)) {
+    let guessedLetters = newGame.getGuessedLetters();
+    guessedLetters = newGame.setGuessedLetters(letter);
+    checkLetters(newGame.getGuessedLetters());
+  } else {
+    newGame.setTries(newGame.getTries() - 1);
+    displayTries.innerHTML = `Tries: ${newGame.getTries()}`;
+    checkLose();
+  }
+};
 
-  checkLetters(newGame.getGuessedLetters());
+const checkLose = () => {
+  if (newGame.getTries() === 0) {
+    const lose = document.querySelector("#message");
+    lose.innerHTML = "You Lose!!!";
+  }
 };
 
 const newGame = new Hangman("Lucas");
@@ -114,17 +126,18 @@ const displayHighScore = createTag(
   `High Score: ${highScore}`
 );
 const displayWord = createTag(null, "div", "displayWord");
+const message = createTag(null, "p", "message");
 const letterBox = createTag(null, "div", "letterBox");
-const letters = createMultiTags(letterBox, "button", 26, "letter", alphabet);
+const letters = createMultiTags(letterBox, "button", 26, "alphabet", alphabet);
 const newWord = createTag(null, "button", "newWord", null, "New Word");
 
 newWord.addEventListener("click", clearBoard);
 
 letterBox.addEventListener("click", (e) => {
   let targetElement = e.target;
-  if (targetElement.matches(".letter")) {
-    targetElement.classList.remove("letter");
-    targetElement.classList.add("usedLetter");
+  if (targetElement.matches(".alphabet")) {
+    targetElement.classList.remove("alphabet");
+    targetElement.classList.add("usedAlphabet");
     guessLetter(e.srcElement.innerHTML);
   }
 });
